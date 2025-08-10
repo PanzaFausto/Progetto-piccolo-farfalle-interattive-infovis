@@ -21,7 +21,7 @@ Per qualsiasi dettagli tecnico si rimanda all'analisi tecnica contenuta nella ca
 
 Se si dovessero avere problemi ad aprire semplicemente il file html, per visualizzare correttamente il progetto, è fondamentale eseguirlo tramite un **server web locale**.
 
-**Motivo:** Il codice JavaScript (`script.js`) deve caricare il file `data.json`. I browser moderni, per motivi di sicurezza (per es. politica CORS), bloccano queste richieste se la pagina viene aperta direttamente dal file system (con un indirizzo `file:///...`). Quindi se si apre normalmente il file "index.html" non funzionerà bene l'interfaccia.
+**Motivo:** Il codice JavaScript (`script.js`) deve caricare il file `data.json`. I browser moderni, per motivi di sicurezza (per es. politica CORS), bloccano queste richieste se la pagina viene aperta direttamente dal file system (con un indirizzo `file:///...`). Quindi se si apre normalmente il file "index.html" potrebbe non funzionare correttamente l'interfaccia.
 
 **Metodo Consigliato (con Visual Studio Code):**
 1. Installare l'estensione "Live Server".
