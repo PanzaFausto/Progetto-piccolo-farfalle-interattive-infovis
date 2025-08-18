@@ -331,10 +331,25 @@
 
 		d3.json("dataset.json").then(data => {
 			dataset = data;
+			computeDomains(dataset);
 			drawButterflies(dataset);
 			updateStats();
 			updateModeIndicator();
 		});
+		
+		function computeDomains(dataset) {
+			// Calcola min/max per ciascuna delle 5 variabili
+			const numVars = dataset[0].vars.length;
+			const newDomains = [];
+
+			for (let i = 0; i < numVars; i++) {
+				const values = dataset.map(d => d.vars[i]);
+				newDomains.push([d3.min(values), d3.max(values)]);
+			}
+
+			domains = newDomains; // aggiorna l'array globale dei domini
+		}
+
 
 
         // ==========================
@@ -364,15 +379,8 @@
         const abdomenScale = d3.scaleLinear().range([15, 35]);
         const bodyWidthScale = d3.scaleLinear().range([2, 5]);
         
-        // Array che contiene i 'domain' (intervalli di input) per ogni variabile.
         // Questo array ruoterà in sincronia con i dati.
-        let domains = [
-            [0, 750], // Dominio per var 1 (Pos X)
-            [0, 400], // Dominio per var 2 (Pos Y)
-            [0, 60],  // Dominio per var 3 (Ali)
-            [0, 15],  // Dominio per var 4 (Testa)
-            [0, 30]   // Dominio per var 5 (Addome)
-        ];
+        let domains = [];
 
         // Funzione per aggiornare i domini di tutte le scale basandosi sull'array 'domains'.
         function updateScaleDomains() {
